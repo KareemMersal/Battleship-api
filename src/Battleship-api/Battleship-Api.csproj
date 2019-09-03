@@ -9,6 +9,8 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
+    <DocumentationFile>C:\Users\mersalka\Documents\GitHub\Battleship-api\src\Battleship-api\Battleship-Api.xml\netcoreapp2.2\Battleship-API.XML</DocumentationFile>
+    <OutputPath>Battleship-Api.xml</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>

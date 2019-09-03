@@ -7,6 +7,11 @@ The Batleship-Api is an web API appilcation that allows to build a complete Batt
 I assume here that we have a software house that is produce games and the development sector is divided into 2 teams . Backend Team and frontend Team. I'm a software Engineer in the backend Team.
 The development Team has rules and guildlines which restrain the work to follow the best practices.
 
+ ## Usefull Links
+
+- [Swagger UI Link](https://localhost:44305/swagger/index.html) Please Replace the Port Number by your Port Number.
+- [Health Ckeck](https://localhost:44305/status) Please Replace the Port Number by your Port Number.
+
 ## Branshes Names 
 
  The Guildlines says the branch name Must be The Type of story {Feature / hotfix} / Your team name - Story Number
@@ -26,6 +31,7 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-003 : Add Database context (Sub - Task)
 - Backend-004 : Add Nuget Packages (Sub - Task)
 - Backend-005 : Add Logging (Sub - Task)
+- Backend-006 : Add Swagger (Sub - Task)
 
  ## Developer Notes 
 

@@ -1,4 +1,5 @@
-﻿using BattleShip.Api.Database;
+﻿using BattleShip.Api;
+using BattleShip.Api.Database;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Serilog;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace Battleship_api
 {
@@ -28,6 +30,10 @@ namespace Battleship_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc(Constants.ApiVersion.V1, new Info() { Title = "Battle-Api", Version = Constants.ApiVersion.V1 });
+            });
             services.AddHealthChecks();
             services.AddDbContext<BattleShipDbContext>(options => options.UseInMemoryDatabase(databaseName: "Battleship"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
@@ -37,6 +43,13 @@ namespace Battleship_api
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             app.UseHealthChecks("/status");
+            app.UseSwagger();
+
+            // Enable middleware to serve swagger-ui assets (HTML, JS, CSS etc.)
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Battleship AP");
+            });
 
             if (env.IsDevelopment())
             {
