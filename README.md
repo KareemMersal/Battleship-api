@@ -32,7 +32,7 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-004 : Add Nuget Packages (Sub - Task)
 - Backend-005 : Add Logging (Sub - Task)
 - Backend-006 : Add Swagger (Sub - Task)
-
+- Backend-007 : Add Exception Handling (Sub - Task)
  ## Developer Notes 
 
  - **Why using Persistance Layer?**
