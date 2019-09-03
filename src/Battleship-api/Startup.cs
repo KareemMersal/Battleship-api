@@ -1,5 +1,9 @@
-﻿using BattleShip.Api;
+﻿using System;
+using AutoMapper;
+using BattleShip.Api;
+using BattleShip.Api.AppStart;
 using BattleShip.Api.Database;
+using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
@@ -30,11 +34,16 @@ namespace Battleship_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCustomMvc();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddCustomProblemDetailsMapping();
+            services.AddHealthChecks();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(Constants.ApiVersion.V1, new Info() { Title = "Battle-Api", Version = Constants.ApiVersion.V1 });
             });
-            services.AddHealthChecks();
+            
             services.AddDbContext<BattleShipDbContext>(options => options.UseInMemoryDatabase(databaseName: "Battleship"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -74,6 +83,7 @@ namespace Battleship_api
                 });
             }
             app.UseHttpsRedirection();
+            app.UseProblemDetails();
             app.UseMvc();
             loggerFactory.AddSerilog();
 
