@@ -24,7 +24,7 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-001 : Add API Skeleton
 - Backend-002 : Add API Basement
 - Backend-003 : Add Database context (Sub - Task)
-
+- Backend-004 : Add Nuget Packages (Sub - Task)
 
 
 
