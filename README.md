@@ -15,8 +15,15 @@ The development Team has rules and guildlines which restrain the work to follow 
 
 I Believe I need to show what I believe and how I solve issues.
 
-### Stories List
+## Stories Meaning 
+
+I mean by the story is what needs to be done to add business value. For example create database as story won't add a value for business unless they use the database itself. so I will create the Database in Sub Task.
+Sub-Tasks are Important to make the PR smaller.
+
+## Stories List
 - Backend-001 : Add API Skeleton
+- Backend-002 : Add API Basement
+
 
 
 
