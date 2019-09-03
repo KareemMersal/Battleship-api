@@ -1,0 +1,51 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.329
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0227CCDF-AB0A-4568-8145-CEAE99190D12}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C533AAA5-8F80-4A82-8FFC-624A786DB894}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BE47C6CF-32C8-45FB-8E7D-7B3134D3B58B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship-Api", "src\Battleship-api\Battleship-Api.csproj", "{85C3E966-EEB0-4257-8285-173E0AAEF074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Battleship-Api.IntegrationTests", "test\Battleship-Api.IntegrationTests\Battleship-Api.IntegrationTests.csproj", "{B7E0E564-3F7E-4B46-98F6-D8ADFE3A25E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BattleShip-Api.UnitTests", "test\BattleShip-Api.UnitTests\BattleShip-Api.UnitTests.csproj", "{5B68AF6A-0E06-431C-B09D-F0486A4F9A03}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85C3E966-EEB0-4257-8285-173E0AAEF074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85C3E966-EEB0-4257-8285-173E0AAEF074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85C3E966-EEB0-4257-8285-173E0AAEF074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85C3E966-EEB0-4257-8285-173E0AAEF074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B7E0E564-3F7E-4B46-98F6-D8ADFE3A25E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B7E0E564-3F7E-4B46-98F6-D8ADFE3A25E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B7E0E564-3F7E-4B46-98F6-D8ADFE3A25E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B7E0E564-3F7E-4B46-98F6-D8ADFE3A25E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B68AF6A-0E06-431C-B09D-F0486A4F9A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B68AF6A-0E06-431C-B09D-F0486A4F9A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B68AF6A-0E06-431C-B09D-F0486A4F9A03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B68AF6A-0E06-431C-B09D-F0486A4F9A03}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{85C3E966-EEB0-4257-8285-173E0AAEF074} = {C533AAA5-8F80-4A82-8FFC-624A786DB894}
+		{B7E0E564-3F7E-4B46-98F6-D8ADFE3A25E9} = {BE47C6CF-32C8-45FB-8E7D-7B3134D3B58B}
+		{5B68AF6A-0E06-431C-B09D-F0486A4F9A03} = {BE47C6CF-32C8-45FB-8E7D-7B3134D3B58B}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {825FFA68-E212-426F-ACAA-16C22DCCCECB}
+	EndGlobalSection
+EndGlobal
