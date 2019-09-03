@@ -25,6 +25,30 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-002 : Add API Basement
 - Backend-003 : Add Database context (Sub - Task)
 - Backend-004 : Add Nuget Packages (Sub - Task)
+- Backend-005 : Add Logging (Sub - Task)
 
+ ## Developer Notes 
+
+ - **Why using Persistance Layer?**
+
+I built the application over the assumtion mentioned above and to create the website making multiple players play in the same time. we will need a database . I chose the simplest one as a prove of concept. beside the test has no time limit so why not make it better :) 
+in the real time work I always follow the story and don't implement what is out of scope.
+
+- **Integration Tests!**
+
+Yes, As the Application has a persistance Layer we should add an integration Tests . but with InMemory Database! . You got the Idea anyway.
+So Unit Tests Will be More Realistic.
+    
+- **Why Adding AutoMapper , FluentValidation , Problem details & Custome Exptions in the first commit without real need for it  ?** 
+
+I Believe in Just enough design and I made a mistake by adding it to Backend-001 Branch. I was thinking about a head start.I should have been waiting until the real need feature branch to add them. 
+
+- **Why Logging ?**
+
+Every Application needs a loggin system this application uses both File and console logging. at later stage we can use ElasticSearch for logging.
+
+- **Why Swagger  ?** 
+
+To Give user interface to the frontend Team to know how to interact with the backend
 
 
