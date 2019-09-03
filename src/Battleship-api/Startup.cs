@@ -1,10 +1,14 @@
 ﻿using BattleShip.Api.Database;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace Battleship_api
 {
@@ -12,7 +16,11 @@ namespace Battleship_api
     {
         public Startup(IConfiguration configuration)
         {
+            Log.Logger = new LoggerConfiguration()
+                .ReadFrom.Configuration(configuration)
+                .CreateLogger();
             Configuration = configuration;
+            Log.Information($"ConfigureServices Completed");
         }
 
         public IConfiguration Configuration { get; }
@@ -20,25 +28,42 @@ namespace Battleship_api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHealthChecks();
             services.AddDbContext<BattleShipDbContext>(options => options.UseInMemoryDatabase(databaseName: "Battleship"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseHealthChecks("/status");
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+                app.UseExceptionHandler(appBuilder =>
+                {
+                    appBuilder.Run(async context =>
+                    {
+                        var exceptionHandlerFeature = context.Features.Get<IExceptionHandlerFeature>();
+                        if (exceptionHandlerFeature != null)
+                        {
+                            Log.Error(exceptionHandlerFeature.Error, exceptionHandlerFeature.Error.Message);
+                        }
 
+                        context.Response.StatusCode = 500;
+                        await context.Response.WriteAsync("An unexpected fault happened. Try again later.");
+
+                    });
+                });
+            }
             app.UseHttpsRedirection();
             app.UseMvc();
+            loggerFactory.AddSerilog();
+
         }
     }
 }
