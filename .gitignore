@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/src/Battleship-api/obj
+/src/Battleship-api/bin/Debug/netcoreapp2.2
+/test/BattleShip-Api.UnitTests/obj/Debug/netcoreapp2.2
+/test/BattleShip-Api.UnitTests/obj
+/test/BattleShip-Api.UnitTests/bin/Debug/netcoreapp2.2
+/test/Battleship-Api.IntegrationTests/bin/Debug/netcoreapp2.2
+/test/Battleship-Api.IntegrationTests/obj
