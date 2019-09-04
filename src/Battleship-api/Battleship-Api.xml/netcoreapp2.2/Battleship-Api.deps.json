@@ -30,6 +30,7 @@
           "Hellang.Middleware.ProblemDetails": "3.1.0",
           "Microsoft.AspNetCore.App": "2.2.0",
           "Microsoft.AspNetCore.Razor.Design": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
           "Microsoft.NETCore.App": "2.2.0",
           "Serilog.AspNetCore": "3.0.0",
           "Serilog.Settings.Configuration": "3.1.0",

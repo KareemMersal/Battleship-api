@@ -33,6 +33,8 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-005 : Add Logging (Sub - Task)
 - Backend-006 : Add Swagger (Sub - Task)
 - Backend-007 : Add Exception Handling (Sub - Task)
+- Backend-008 : Create Game End Point
+
  ## Developer Notes 
 
  - **Why using Persistance Layer?**
@@ -57,4 +59,48 @@ Every Application needs a loggin system this application uses both File and cons
 
 To Give user interface to the frontend Team to know how to interact with the backend
 
+- **Why adding Custom MVC class and Adding Swagger configuration in the same startup class ?** 
+
+Swagger configuration is 1 line per function if things got more compicated in the future we should move them to a seprate class as extensions.
+
+- **Why Pushing the Values controller in the first commit ?** 
+
+For Testing Purpose during the PR Request. 
+
+- **Why not Using Clean Archicture in the folder hirarchy ?**
+
+I personally Prefer the features folder hirarchy for the ease of finding the files that belongs to a certain feature as well as it will align with the frontend project format. In the large applications the clean architecture folders hirarachy be become a bit missy. 
+
+
+- **Game Controller** 
+
+The Api gives fully flexibility to the frontend team to add the board size while Creating. however the defaults will be used if not provided.
+The Api gives the board name as Unique id to allow the system to use multiple boards in the same time.
+
+- **Why Board Size is Limited?** 
+
+We need to make sure that the players finishes the game within human life time :) 
+Also adding a guard against adding invalid numbers.
+
+- **Why returning 201 instead of 200?** 
+
+I think it's better to return something to the consumer. I don't like sending back the id that he already has it. but the case is really simple. beside it's better in testing.
+
+- **Why not using CQRS ?** 
+
+Even when I added several things out of scope but the project itself doesn't need CQRS. sometimes over complicating things will make it worse. I believe I added only the things that is important to a Web API application.
+
+- **Transactions**
+
+With The Game Service Layer we will need to add the transaction to the code in order to RollBack in case of any Error Happened . it won't work with the In Memory Database but I put it here to consider it in the future.
+
+
+- **Domain Folder**
+
+Instead of calling domain objects from different features the folder should hold the domain models. as they are used in different features.
+
+- **Double Validation!**
+
+Yes I believe that the cost of the changes in 2 places is far more cheaper than introducing a production issue. 
+Also when to work on seperating the service from the WebAPI we still can relay on the service that it will do it's work.
 
