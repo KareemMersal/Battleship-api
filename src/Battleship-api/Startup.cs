@@ -1,6 +1,5 @@
 ﻿using System;
 using AutoMapper;
-using BattleShip.Api;
 using BattleShip.Api.AppStart;
 using BattleShip.Api.Database;
 using BattleShip.Api.Features.Games;
@@ -17,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using Serilog;
 using Swashbuckle.AspNetCore.Swagger;
 
-namespace Battleship_api
+namespace BattleShip.Api
 {
     public class Startup
     {

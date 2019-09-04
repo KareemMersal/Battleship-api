@@ -54,6 +54,35 @@ namespace BattleShip.Api.Features.Games
                 throw;
             }
         }
+        public async Task<bool> CheckBoardExists(Guid boardId)
+        {
+            try
+            {
+                return await _context.Boards.AnyAsync(board => board.BoardId == boardId);
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError("Unknown Exception", e);
+                throw;
+            }
+        }
+        public async Task<Board> GetBoard(Guid boardId)
+        {
+            try
+            {
+                return await _context.Boards.
+                    Include(s =>s.Ships).
+                    FirstAsync(board =>
+                    board.BoardId == boardId);
+            }
+
+            catch (Exception e)
+            {
+                _logger.LogError("Unknown Exception", e);
+                throw;
+            }
+        }
 
         public async Task<Board> GetBoard(Guid boardId, Guid playerId)
         {
