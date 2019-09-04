@@ -55,15 +55,18 @@ namespace BattleShip.Api.Features.Games
 
         public bool PlaceShipOnBoard(Board board, List<Point> points)
         {
+            if (points == null || points.Count <= 0)
+                return false;
+
             foreach (var point in points)
             {
                 //Check if the Point within Board Range
-                if (point.X - 1 > board.BoardSize || point.X < 0 ||
-                    point.Y - 1 > board.BoardSize || point.X < 0)
+                if (point.X - 1 > board.BoardSize || point.X <= 0 ||
+                    point.Y - 1 > board.BoardSize || point.X <= 0)
                     return false;
                 //Check if the point is not already Taken
-                if (board.Ships.Any(ship => ship.Cells.Contains(
-                    new Cell(point, ship.ShipId))))
+                if (board.Ships.Any(ship => ship.Cells.Any(
+                    c =>c.CellAddress.X == point.X && c.CellAddress.Y == point.X)))
                     return false;
             }
 
