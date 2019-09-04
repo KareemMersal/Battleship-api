@@ -92,5 +92,22 @@
             <response code="400">Returns request is invalid</response>
             <response code="409">Returns Error about placing the Ship</response>
         </member>
+        <member name="M:Battleship_Api.Features.Player.PlayerController.Post(System.Guid)">
+             <summary>
+             Create a New Game add the number of ships and the board size while Creating.
+             however the defaults will be used if not provided.board number as Unique id to allow the system to use multiple boards in the same time.
+             </summary>
+             <remarks>
+             Sample Request:
+            
+                 POST /Games
+                 {
+                     "BoardId": "board-id"
+                 }
+             </remarks>
+             <param name="boardId">board-id</param>
+             <response code="201">Returns the ids of the created Board</response>
+             <response code="400">Returns request is invalid</response>
+        </member>
     </members>
 </doc>

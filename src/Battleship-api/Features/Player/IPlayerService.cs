@@ -10,5 +10,6 @@ namespace BattleShip.Api.Features.Games
     {
         Task<KeyValuePair<Guid, Guid>> PlaceShip(PlaceShipRequest request);
         Task<PlayerShootReport> PlayerShoot(Guid boardId, Point location);
+        Task<List<ShipsLocation>> RandomiseShips(Guid boardId);
     }
 }

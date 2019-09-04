@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using BattleShip.Api;
@@ -104,6 +103,40 @@ namespace Battleship_Api.Features.Player
             else
             {
                 _logger.LogError("Player Shooting Error");
+                return new StatusCodeResult(409);
+            }
+        }
+
+        /// <summary>
+        /// Create a New Game add the number of ships and the board size while Creating.
+        /// however the defaults will be used if not provided.board number as Unique id to allow the system to use multiple boards in the same time.
+        /// </summary>
+        /// <remarks>
+        /// Sample Request:
+        ///
+        ///     POST /Games
+        ///     {
+        ///         "BoardId": "board-id"
+        ///     }
+        /// </remarks>
+        /// <param name="boardId">board-id</param>
+        /// <response code="201">Returns the ids of the created Board</response>
+        /// <response code="400">Returns request is invalid</response>
+        [HttpPost("RandomiseShips")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        public async Task<IActionResult> Post(Guid boardId)
+        {
+            var result = await _service.RandomiseShips(boardId);
+            if (result != null)
+            {
+                var response = _mapper.Map<List<ShipsLocationResponse>>(result);
+                _logger.LogInformation("Randomise Ships", boardId);
+                return Created("Ships Randomly Placed ", response);
+            }
+            else
+            {
+                _logger.LogError("Error Created Game", boardId);
                 return new StatusCodeResult(409);
             }
         }

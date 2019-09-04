@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Newtonsoft.Json;
 
 namespace BattleShip.Api.Domain
 {
     public class Ship
     {
-        public Ship(int size, bool isDestroyed)
+        public Ship(int size, bool isDestroyed=false)
         {
             Size = size;
             Cells = new List<Cell>();
