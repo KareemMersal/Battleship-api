@@ -35,6 +35,8 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-007 : Add Exception Handling (Sub - Task)
 - Backend-008 : Create Game End Point
 - Backend-009 : Player Place Ship End point
+- Backend-010 : Player Shoot End Point
+- Backend-011 : RandomMap End Point
  ## Developer Notes 
 
  - **Why using Persistance Layer?**

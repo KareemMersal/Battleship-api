@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using BattleShip.Api.CustomExceptions;
+using Battleship.api.Domain;
 using BattleShip.Api.Domain;
 using Microsoft.Extensions.Logging;
 
@@ -53,7 +54,68 @@ namespace BattleShip.Api.Features.Games
                 throw new InvalidDataException("Place Ship", "Wrong Inputs");
         }
 
-        public bool PlaceShipOnBoard(Board board, List<Point> points)
+       public async Task<PlayerShootReport> PlayerShoot(Guid boardId, Point location)
+       {
+           //Check if the Board and the Player are exists
+            if (await _boardRepo.CheckBoardExists(boardId))
+            {
+                //Get Board 
+                var board = await _boardRepo.GetBoard(boardId);
+                var ship = TryShoot(board, location);
+                var shootingReport = new PlayerShootReport(boardId);
+                //Try Shoot
+                if (ship  != null)
+                {
+                    //Shoot
+                    ship.Cells.
+                        First(c => c.CellAddress.X == location.X
+                                   && c.CellAddress.Y == location.Y)
+                        .IsDestroyed = true;
+
+                    shootingReport.ShipId = ship.ShipId;
+                    shootingReport.IsHit = true;
+
+                    // Is Ship Destroyed 
+                    ship.IsDestroyed = IsShipDestroyed(ship);
+                    shootingReport.IsShipDestroyed = ship.IsDestroyed;
+                    
+                    // Is Game Lost 
+                    shootingReport.IsGameLost = IsGameLost(board);
+
+                    //Save
+                    await _boardRepo.UpdateBoard(board);
+                }
+                else
+                {
+                    shootingReport.IsHit = false;
+                    shootingReport.IsGameLost = false;
+                    shootingReport.IsShipDestroyed = false;
+                }
+
+                return shootingReport;
+            }
+
+            throw new InvalidDataException("Player Shoot", "Wrong Inputs");
+       }
+
+       private bool IsGameLost(Board board)
+       {
+           return board.Ships.All(s => s.IsDestroyed);
+       }
+
+       private bool IsShipDestroyed(Ship ship)
+       {
+           return ship.Cells.All(c => c.IsDestroyed);
+       }
+
+       private Ship TryShoot(Board board, Point location)
+       {
+           return board.Ships.SingleOrDefault(ship => ship.Cells.Any(
+               c => c.CellAddress.X == location.X && c.CellAddress.Y == location.X && !c.IsDestroyed));
+
+       }
+
+       public bool PlaceShipOnBoard(Board board, List<Point> points)
         {
             if (points == null || points.Count <= 0)
                 return false;
