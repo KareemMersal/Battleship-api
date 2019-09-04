@@ -32,9 +32,30 @@ namespace BattleShip_Api.UnitTests.Features
             var board = SetupData();
             
             var playerService = new PlayerService(_repo.Object, _logger.Object);
-                playerService.PlaceShipOnBoard(board , new List<Point> {new Point(x,y)}).ShouldBe(false);
+                playerService.IsLocationsValid(board , new List<Point> {new Point(x,y)}).ShouldBe(false);
         }
+        [Fact]
+        public void Check_Random_Function()
+        {
+            var boardId = Guid.NewGuid();
+            var board = new Board(Guid.NewGuid(), 5);
+            board.BoardId = boardId;
 
+            SetupMock(board);
+            var playerService = new PlayerService(_repo.Object, _logger.Object);
+            var result = playerService.RandomiseShips(boardId);
+        }
+        private void SetupMock(Board board)
+        {
+            _repo.Setup(c => c.AddBoard(board))
+                .ReturnsAsync(1);
+
+            _repo.Setup(c => c.CheckBoardExists(board.BoardId))
+                .ReturnsAsync(true);
+
+            _repo.Setup(c => c.GetBoard(board.BoardId))
+                .ReturnsAsync(board);
+        }
         private Board SetupData()
         {
            var board = new Board(Guid.NewGuid(), 5);
