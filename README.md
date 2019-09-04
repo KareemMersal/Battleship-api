@@ -34,7 +34,7 @@ Sub-Tasks are Important to make the PR smaller. however I will name them as well
 - Backend-006 : Add Swagger (Sub - Task)
 - Backend-007 : Add Exception Handling (Sub - Task)
 - Backend-008 : Create Game End Point
-
+- Backend-009 : Player Place Ship End point
  ## Developer Notes 
 
  - **Why using Persistance Layer?**
@@ -77,6 +77,20 @@ I personally Prefer the features folder hirarchy for the ease of finding the fil
 The Api gives fully flexibility to the frontend team to add the board size while Creating. however the defaults will be used if not provided.
 The Api gives the board name as Unique id to allow the system to use multiple boards in the same time.
 
+- **Player Controller** 
+The API has a player controller where the player can shoot and Place the Ships Manually or Random.
+I'd like to leave it for the frontend to validate that the player doesn't send wrong information while placing a ship inside his board . but I will validate it anyway to be more comfortable.
+The points sequence is a frontend Concern. Also it can be nice we can add the ships in diagonal way :)
+Player Move Ship from one position to another! 
+Well not in this version. 
+Start Game . I don't need a button to start game it's a frontend concern. 
+
+- **Why PlaceShipOnBoard Function is private and why I tunred it to public**
+
+I believe if the function serves only one class it should be private however it still can be tested via the public main method of the class. 
+Why I turned it to public . cause the Test Scenario for the Main function is very long. I already demonstrated my skills in Board Service Test. 
+
+
 - **Why Board Size is Limited?** 
 
 We need to make sure that the players finishes the game within human life time :) 
@@ -103,4 +117,6 @@ Instead of calling domain objects from different features the folder should hold
 
 Yes I believe that the cost of the changes in 2 places is far more cheaper than introducing a production issue. 
 Also when to work on seperating the service from the WebAPI we still can relay on the service that it will do it's work.
+
+
 

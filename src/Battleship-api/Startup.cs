@@ -45,6 +45,7 @@ namespace Battleship_api
                 c.SwaggerDoc(Constants.ApiVersion.V1, new Info() { Title = "Battle-Api", Version = Constants.ApiVersion.V1 });
             });
             services.AddScoped<IBoardService, BoardService>();
+            services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IBoardRepository, BoardRepository>();
 
             services.AddDbContext<BattleShipDbContext>(options => options.UseInMemoryDatabase(databaseName: "Battleship"));
