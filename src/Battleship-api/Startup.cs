@@ -3,6 +3,7 @@ using AutoMapper;
 using BattleShip.Api;
 using BattleShip.Api.AppStart;
 using BattleShip.Api.Database;
+using BattleShip.Api.Features.Games;
 using Hellang.Middleware.ProblemDetails;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
@@ -43,7 +44,9 @@ namespace Battleship_api
             {
                 c.SwaggerDoc(Constants.ApiVersion.V1, new Info() { Title = "Battle-Api", Version = Constants.ApiVersion.V1 });
             });
-            
+            services.AddScoped<IBoardService, BoardService>();
+            services.AddScoped<IBoardRepository, BoardRepository>();
+
             services.AddDbContext<BattleShipDbContext>(options => options.UseInMemoryDatabase(databaseName: "Battleship"));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

@@ -1,20 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BattleShip.Api.Features;
 
 namespace BattleShip.Api.Domain
 {
-    public class Board
+    public class Board : DataModel
     {
         //Table Id Only 
         [Key]
         public Guid BoardId { get; set; }
-        public Board(Guid playerId, int boardSize , ICollection<Ship> ships)
+        public Board(Guid playerId, int boardSize)
         {
             BoardId = Guid.NewGuid();
             PlayerId = playerId;
             BoardSize = boardSize;
-            Ships = ships;
+            Ships = new List<Ship>();
         }
 
         [Required]
