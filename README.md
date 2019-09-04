@@ -120,5 +120,12 @@ Instead of calling domain objects from different features the folder should hold
 Yes I believe that the cost of the changes in 2 places is far more cheaper than introducing a production issue. 
 Also when to work on seperating the service from the WebAPI we still can relay on the service that it will do it's work.
 
+ ## What's Missing
+ - Alot of Unit Testing for Player and Board Services
+ - Integration Tests for the End Points
+ 
+ ## Is the Code Needs Enhancements 
+ 
+ Indeed Give infinite Time and will do the best code EVER. please note this test made within time limition. BUT it's maintainable 
 
 
